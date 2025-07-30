@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FSC认证数字化平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a6d3b 0%, #0c4523 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="rgba(26, 109, 59, 0.1)" stroke-width="2" d="M20,20 L80,20 L80,80 L20,80 Z"/></svg>');
+            background-size: contain;
+            transform: rotate(15deg);
+            opacity: 0.3;
+        }
+        
+        .container::after {
+            content: "";
+            position: absolute;
+            bottom: -70px;
+            right: -70px;
+            width: 250px;
+            height: 250px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle fill="none" stroke="rgba(26, 109, 59, 0.1)" stroke-width="2" cx="50" cy="50" r="40"/></svg>');
+            background-size: contain;
+            opacity: 0.3;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #1a6d3b 0%, #0c4523 100%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo i {
+            font-size: 50px;
+            color: white;
+        }
+        
+        h1 {
+            color: #1a6d3b;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            color: #555;
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        
+        .buttons-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            min-width: 280px;
+            background: white;
+            border: none;
+            border-radius: 15px;
+            padding: 30px 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a6d3b 0%, #0c4523 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn i {
+            font-size: 50px;
+            margin-bottom: 20px;
+            color: #1a6d3b;
+            transition: color 0.3s ease;
+        }
+        
+        .btn:hover i {
+            color: white;
+        }
+        
+        .btn h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #1a6d3b;
+            transition: color 0.3s ease;
+        }
+        
+        .btn:hover h2 {
+            color: white;
+        }
+        
+        .btn p {
+            color: #777;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+        
+        .btn:hover p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .info-section {
+            background: linear-gradient(135deg, #f8fff8 0%, #e6f7e6 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 50px;
+            text-align: left;
+            border-left: 5px solid #1a6d3b;
+        }
+        
+        .info-section h3 {
+            color: #1a6d3b;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .info-section p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+        
+        .info-section ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+        
+        .info-section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .btn {
+                min-width: 100%;
+            }
+            
+            .buttons-container {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-leaf"></i>
+        </div>
+        <h1>欢迎使用FSC认证数字化平台</h1>
+        <p class="subtitle">请选择您的企业类型</p>
+        
+        <div class="buttons-container">
+            <div class="btn" onclick="selectType('new')">
+                <i class="fas fa-seedling"></i>
+                <h2>首次认证企业</h2>
+                <p>尚未获得FSC认证，准备申请认证的企业用户</p>
+            </div>
+            
+            <div class="btn" onclick="selectType('existing')">
+                <i class="fas fa-certificate"></i>
+                <h2>持证企业</h2>
+                <p>已获得FSC认证，需要进行证书管理的企业用户</p>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <h3><i class="fas fa-info-circle"></i> 关于FSC认证</h3>
+            <p>FSC（森林管理委员会）认证是一个国际认可的认证体系，旨在促进对环境负责、对社会有益和在经济上可行的森林经营活动。</p>
+            <ul>
+                <li><strong>环境适宜</strong> - 保护生物多样性及森林生态系统</li>
+                <li><strong>社会有益</strong> - 维护森林劳动者和当地社区的权益</li>
+                <li><strong>经济可行</strong> - 确保森林经营的经济活力和长期可持续性</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 FSC认证数字化平台 | 为您提供全方位的认证服务</p>
+        </div>
+    </div>
+
+    <script>
+        function selectType(type) {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(btn => btn.style.transform = 'translateY(0)');
+            
+            const selectedBtn = type === 'new' 
+                ? document.querySelector('.btn:first-child') 
+                : document.querySelector('.btn:last-child');
+            
+            selectedBtn.style.transform = 'translateY(-10px)';
+            
+            // 在实际应用中，这里可以添加页面跳转逻辑
+            const message = type === 'new' 
+                ? "您选择了【首次认证企业】，正在进入认证申请流程..." 
+                : "您选择了【持证企业】，正在进入证书管理平台...";
+            
+            alert(message);
+            
+            // 模拟跳转延迟
+            setTimeout(() => {
+                // 实际项目中这里应使用 window.location.href 进行跳转
+                console.log("跳转到相应页面");
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
